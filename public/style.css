@@ -1,0 +1,390 @@
+:root {
+    --bg-color: #050505;
+    --surface-color: rgba(15, 15, 15, 0.9);
+    --primary-color: #c72c41; /* Dark Red/Crimson for Blackmail theme */
+    --primary-hover: #a02030;
+    --text-primary: #e0e0e0;
+    --text-secondary: #888888;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --border-color: rgba(199, 44, 65, 0.3);
+    --border-hover: rgba(199, 44, 65, 0.7);
+    --glass-blur: 15px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Subtle animated background */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 50%, rgba(199, 44, 65, 0.03) 0%, transparent 60%);
+    z-index: -1;
+    animation: pulse 8s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.05); opacity: 1; }
+}
+
+.container {
+    width: 100%;
+    max-width: 680px;
+    background: var(--surface-color);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid #222;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 1px dashed #333;
+    padding-bottom: 1.5rem;
+}
+
+.title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 2.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    color: var(--primary-color);
+    font-size: 0.95rem;
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.form-section {
+    margin-bottom: 2.5rem;
+}
+
+.form-section h2 {
+    font-family: 'Courier Prime', monospace;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Input Fields */
+.input-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 40px;
+}
+
+.input-group select {
+    appearance: none;
+    cursor: pointer;
+    background-color: var(--surface-color);
+}
+
+.input-group select option {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    padding: 10px;
+}
+
+.input-group label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: #666;
+    pointer-events: none;
+    transition: 0.3s ease all;
+    font-size: 0.95rem;
+}
+
+.select-label {
+    top: -20px !important;
+    font-size: 0.8rem !important;
+    color: var(--primary-color) !important;
+}
+
+/* Floating label effect */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:not(:placeholder-shown) ~ label {
+    top: -20px;
+    font-size: 0.8rem;
+    color: var(--primary-color);
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    border-bottom-color: var(--primary-color);
+    box-shadow: 0 1px 0 0 var(--primary-color);
+}
+
+/* Specific styling for signature */
+.signature-input {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.5rem !important;
+    font-style: italic;
+    color: var(--primary-color) !important;
+}
+
+.contract-terms {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Checkbox (Consent) */
+.contract-section {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    user-select: none;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    border-color: var(--primary-color);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--bg-color);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.consent-text {
+    line-height: 1.4;
+    font-family: 'Courier Prime', monospace;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid #333;
+    background-color: #111;
+    padding: 15px 20px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 55px;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: all 0.4s ease;
+    z-index: 0;
+}
+
+.btn-text, .loader {
+    position: relative;
+    z-index: 1;
+}
+
+.submit-btn:hover::before {
+    left: 0;
+}
+
+.submit-btn:hover {
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(199, 44, 65, 0.3);
+}
+
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.submit-btn:disabled:hover::before {
+    left: -100%;
+}
+.submit-btn:disabled:hover {
+    color: var(--text-primary);
+    box-shadow: none;
+    border-color: #333;
+}
+
+/* Loader */
+.loader {
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    border-top: 3px solid #fff;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Response Message */
+#response-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 2px;
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    animation: fadeIn 0.5s ease forwards;
+    text-transform: uppercase;
+}
+
+.success-msg {
+    background-color: rgba(199, 44, 65, 0.1);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.error-msg {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--error-color);
+    border: 1px dashed var(--error-color);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 2rem 1.5rem;
+    }
+    .title {
+        font-size: 1.8rem;
+    }
+}
