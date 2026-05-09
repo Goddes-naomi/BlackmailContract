@@ -55,9 +55,7 @@ app.post('/api/submit', async (req, res) => {
                 }]
             };
 
-            // Send to Discord
-            const fetch = (await import('node-fetch')).default || global.fetch; // Node 18+ has global fetch
-            
+            // Send to Discord using Node.js native fetch (Node 18+)
             await fetch(webhookUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
