@@ -71,7 +71,7 @@ app.post('/api/submit', async (req, res) => {
         res.status(200).json({ success: true, message: 'Contract officially signed and securely submitted.' });
     } catch (error) {
         console.error("Error submitting contract:", error);
-        res.status(500).json({ success: false, message: 'Internal Server Error. The contract could not be processed at this time.' });
+        res.status(500).json({ success: false, message: 'Server Error: ' + error.message });
     }
 });
 
